@@ -82,13 +82,15 @@ class Game {
                 // Randomly change each part of the face
                 if (this.currentPart === 'eyes') {
                     this.eyeElement.src = this.costumer.eyes[Math.floor(Math.random() * this.costumer.eyes.length)];
+                    this.noseElement.style.display = 'none';  
+                    this.mouthElement.style.display = 'none';
                 } else if (this.currentPart === 'nose') {
                     this.noseElement.src = this.costumer.noses[Math.floor(Math.random() * this.costumer.noses.length)];
                 } else if (this.currentPart === 'mouth') {
                     this.mouthElement.src = this.costumer.mouths[Math.floor(Math.random() * this.costumer.mouths.length)];
                 }
             }
-        }, 500)); 
+        }, 800)); 
 
         // Listen for spacebar to stop the rotation and choose the part
         document.addEventListener('keydown', this.stopSlotMachine.bind(this));
@@ -103,7 +105,7 @@ class Game {
 
             // Store the selected parts in the costumer object
             if (this.currentPart === 'eyes') {
-                this.costumer.selectedEyes = this.eyeElement.src;
+                this.costumer.selectedEyes = this.eyeElement.src.split('/').pop();;
                 this.currentPart = 'nose'; // After eyes, show nose next
 
                 // Show the nose, leave eyes visible
@@ -114,7 +116,7 @@ class Game {
                 this.startSlotMachine(); // Keep randomizing the nose
 
             } else if (this.currentPart === 'nose') {
-                this.costumer.selectedNose = this.noseElement.src;
+                this.costumer.selectedNose = this.noseElement.src.split('/').pop();;
                 this.currentPart = 'mouth'; // After nose, show mouth next
 
                 // Show the mouth, leave eyes and nose visible
@@ -123,7 +125,7 @@ class Game {
                 this.startSlotMachine(); // Keep randomizing the mouth
 
             } else if (this.currentPart === 'mouth') {
-                this.costumer.selectedMouth = this.mouthElement.src;
+                this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();;
                 // Now all parts are selected, verify the face
                 this.checkIfCorrectFace();
             }

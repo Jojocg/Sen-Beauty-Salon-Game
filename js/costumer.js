@@ -64,9 +64,9 @@ class Costumer {
     // Method to verify if the selected face is correct
     verifyFace() {
         return (
-            this.selectedEyes === this.correctEyes && // The first option is the correct one (you can randomize it if you want)
-            this.selectedNose === this.correctNose &&
-            this.selectedMouth === this.correctMouth
+            this.selectedEyes === this.correctEyes.split('/').pop() &&
+            this.selectedNose === this.correctNose.split('/').pop() &&
+            this.selectedMouth === this.correctMouth.split('/').pop()
         );
     }
 }
