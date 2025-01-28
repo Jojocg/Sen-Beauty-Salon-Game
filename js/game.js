@@ -2,6 +2,7 @@ class Game {
     constructor() {
         this.startScreen = document.getElementById("game-intro");
         this.gameScreen = document.getElementById("game-screen");
+        this.faceElements = document.getElementById("face-elements-container"); //it should be display flex column
         this.gameEndScreen = document.getElementById("game-end");
         this.costumer = new Costumer(
             this.gameScreen,
@@ -29,29 +30,29 @@ class Game {
         // Create and append the eye element
         this.eyeElement = document.createElement("img");
         this.eyeElement.id = "eyes";
-        this.gameScreen.appendChild(this.eyeElement);
+        this.faceElements.appendChild(this.eyeElement);
 
         // Create and append the nose element
         this.noseElement = document.createElement("img");
         this.noseElement.id = "nose";
-        this.gameScreen.appendChild(this.noseElement);
+        this.faceElements.appendChild(this.noseElement);
 
         // Create and append the mouth element
         this.mouthElement = document.createElement("img");
         this.mouthElement.id = "mouth";
-        this.gameScreen.appendChild(this.mouthElement);
+        this.faceElements.appendChild(this.mouthElement);
 
         // Set default size for all elements
-        this.setImageSize(this.eyeElement);
+        /* this.setImageSize(this.eyeElement);
         this.setImageSize(this.noseElement);
-        this.setImageSize(this.mouthElement);
+        this.setImageSize(this.mouthElement); */
     }
 
     // Function to set a default image size
-    setImageSize(element) {
+    /* setImageSize(element) {
         element.style.width = "50px"; 
         element.style.height = "50px"; 
-    }
+    } */
 
     start() {
         // Set the height and width of the game screen

@@ -65,6 +65,32 @@ body button {
     }
 } */
 
+#face-elements-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 385px;
+    left: 960px;
+    z-index: 1;
+}
+
+#eyes {
+    width: 70px;
+    height: 25px;
+}
+
+#nose {
+    width: 25px;
+    height: 25px;
+}
+
+#mouth {
+    width: 45px;
+    height: 30px;
+}
+
 #game-end {
     display: none;
 }
