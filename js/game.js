@@ -125,7 +125,9 @@ class Game {
                 this.startSlotMachine(); // Keep randomizing the mouth
 
             } else if (this.currentPart === 'mouth') {
-                this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();;
+                this.startSlotMachine();
+                this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();
+                
                 // Now all parts are selected, verify the face
                 this.checkIfCorrectFace();
             }
