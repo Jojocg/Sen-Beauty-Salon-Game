@@ -20,7 +20,7 @@ class Costumer {
 
         this.element.src = imgSrc;
         this.element.style.position = "absolute";
-        // Set up the default element's property values
+        // Set up the default element property values
         this.element.style.width = `${width}px`;
         this.element.style.height = `${height}px`;
         this.element.style.left = `${left}px`;

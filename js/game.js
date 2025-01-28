@@ -72,13 +72,13 @@ class Game {
     showCorrectFace() {
         this.costumer.displayRandomFace(); // Select random parts of the face for this round
 
-        // Display the correct face in the DOM
+        // Display the correct face
         this.eyeElement.src = this.costumer.correctEyes;
         this.noseElement.src = this.costumer.correctNose;
         this.mouthElement.src = this.costumer.correctMouth;
 
         // Show the correct combination for a few seconds before starting the rotation
-        setTimeout(() => this.startSlotMachine(), 5000); // Start slot machine after 3 seconds
+        setTimeout(() => this.startSlotMachine(), 5000); // Start slot machine after "x" seconds
     }
 
     // Start the slot machine effect (randomly change the images)
