@@ -41,18 +41,7 @@ class Game {
         this.mouthElement = document.createElement("img");
         this.mouthElement.id = "mouth";
         this.faceElements.appendChild(this.mouthElement);
-
-        // Set default size for all elements
-        /* this.setImageSize(this.eyeElement);
-        this.setImageSize(this.noseElement);
-        this.setImageSize(this.mouthElement); */
     }
-
-    // Function to set a default image size
-    /* setImageSize(element) {
-        element.style.width = "50px"; 
-        element.style.height = "50px"; 
-    } */
 
     start() {
         // Set the height and width of the game screen
