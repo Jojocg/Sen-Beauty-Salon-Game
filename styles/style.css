@@ -82,13 +82,13 @@ body button {
 }
 
 #nose {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 }
 
 #mouth {
-    width: 45px;
-    height: 30px;
+    width: 55px;
+    height: 35px;
 }
 
 #game-end {
