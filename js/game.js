@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.startScreen = document.getElementById("game-intro");
         this.gameScreen = document.getElementById("game-screen");
-        this.faceElements = document.getElementById("face-elements-container"); //it should be display flex column
+        this.faceElements = document.getElementById("face-elements-container");
         this.gameEndScreen = document.getElementById("game-end");
         this.costumer = new Costumer(
             this.gameScreen,
@@ -17,10 +17,11 @@ class Game {
         );
         this.height = 100;
         this.width = 100;
-        /* this.score = 0; */
         this.lives = 2;
         this.gameIsOver = false;
         this.intervals = []; // Store intervals for the slot machine rotation
+        this.currentPart = 'eyes'; // Tracking which part to show next
+        this.isSpinning = false; // Tracking if the slot machine is spinning
 
         // Create dynamic img elements for eyes, nose, and mouth
         this.createFaceElements();
@@ -67,54 +68,83 @@ class Game {
         this.noseElement.src = this.costumer.correctNose;
         this.mouthElement.src = this.costumer.correctMouth;
 
-        // Show the correct combination for a few seconds before starting the rotation
-        setTimeout(() => this.startSlotMachine(), 5000); // Start slot machine after "x" seconds
+        // Show the correct combination for 5 seconds before starting the rotation
+        setTimeout(() => this.startSlotMachine(), 5000); // Start slot machine after 5 seconds
     }
 
     // Start the slot machine effect (randomly change the images)
     startSlotMachine() {
-        this.isPlaying = true;
+        this.isSpinning = true; // Set spinning flag to true
 
         // Set intervals to randomly change the images
         this.intervals.push(setInterval(() => {
-            // Randomly change each part of the face
-            this.eyeElement.src = this.costumer.eyes[Math.floor(Math.random() * this.costumer.eyes.length)];
-            this.noseElement.src = this.costumer.noses[Math.floor(Math.random() * this.costumer.noses.length)];
-            this.mouthElement.src = this.costumer.mouths[Math.floor(Math.random() * this.costumer.mouths.length)];
+            if (this.isSpinning) { // Only change if it's spinning
+                // Randomly change each part of the face
+                if (this.currentPart === 'eyes') {
+                    this.eyeElement.src = this.costumer.eyes[Math.floor(Math.random() * this.costumer.eyes.length)];
+                } else if (this.currentPart === 'nose') {
+                    this.noseElement.src = this.costumer.noses[Math.floor(Math.random() * this.costumer.noses.length)];
+                } else if (this.currentPart === 'mouth') {
+                    this.mouthElement.src = this.costumer.mouths[Math.floor(Math.random() * this.costumer.mouths.length)];
+                }
+            }
         }, 500)); 
 
-        // Listen for spacebar to stop the rotation
+        // Listen for spacebar to stop the rotation and choose the part
         document.addEventListener('keydown', this.stopSlotMachine.bind(this));
     }
 
     // Stop the slot machine and check if the player selected the correct face
     stopSlotMachine(event) {
         if (event.key === ' ') {
-            // Stop all the intervals (stopping the rotation)
+            // Stop the spinning and clear all intervals
+            this.isSpinning = false;
             this.intervals.forEach(interval => clearInterval(interval));
 
-            // Check the current images and assign them to the costumer
-            this.costumer.chooseEyes(this.costumer.eyes.indexOf(this.eyeElement.src.split('/').pop()));
-            this.costumer.chooseNose(this.costumer.noses.indexOf(this.noseElement.src.split('/').pop()));
-            this.costumer.chooseMouth(this.costumer.mouths.indexOf(this.mouthElement.src.split('/').pop()));
+            // Store the selected parts in the costumer object
+            if (this.currentPart === 'eyes') {
+                this.costumer.selectedEyes = this.eyeElement.src;
+                this.currentPart = 'nose'; // After eyes, show nose next
 
-            // Check if the player selected the correct face
-            if (this.costumer.verifyFace()) {
-                alert("You won!");
-                // Reset game or move to the next level, etc.
-            } else {
-                alert("You lost! Try again.");
-                this.lives -= 1;
-                if (this.lives <= 0) {
-                    alert("Game Over!");
-                    // Restart the game or end it
-                } else {
-                    alert(`You have ${this.lives} lives remaining.`);
-                    // Allow the player to try again
-                }
+                // Show the nose, leave eyes visible
+                this.noseElement.style.display = 'block';  // Show nose
+                this.mouthElement.style.display = 'none';  // Hide mouth
+
+                // Restart the randomization for the nose
+                this.startSlotMachine(); // Keep randomizing the nose
+
+            } else if (this.currentPart === 'nose') {
+                this.costumer.selectedNose = this.noseElement.src;
+                this.currentPart = 'mouth'; // After nose, show mouth next
+
+                // Show the mouth, leave eyes and nose visible
+                this.mouthElement.style.display = 'block'; // Show mouth
+                // Restart the randomization for the mouth
+                this.startSlotMachine(); // Keep randomizing the mouth
+
+            } else if (this.currentPart === 'mouth') {
+                this.costumer.selectedMouth = this.mouthElement.src;
+                // Now all parts are selected, verify the face
+                this.checkIfCorrectFace();
             }
+        }
+    }
 
-            this.isPlaying = false; // End the game
+    // Check if the selected face is correct
+    checkIfCorrectFace() {
+        if (this.costumer.verifyFace()) {
+            alert("You won!");
+            // Reset game or move to the next level, etc.
+        } else {
+            alert("You lost! Try again.");
+            this.lives -= 1;
+            if (this.lives <= 0) {
+                alert("Game Over!");
+                // Restart the game or end it
+            } else {
+                alert(`You have ${this.lives} lives remaining.`);
+                // Allow the player to try again
+            }
         }
     }
 }
