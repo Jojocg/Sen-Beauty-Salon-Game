@@ -7,45 +7,83 @@ body {
     text-align: center;
 }
 
+h1 {
+    font-family: "Englebert", cursive;
+    font-size: 90px;
+    color: antiquewhite;
+    text-shadow: 1px 0px 0px black,
+        0px 1px 0px black,
+        -1px 0px 0px black,
+        0px -1px 0px black;
+    margin-bottom: 32px;
+}
+
+body button {
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    background-color: lightcyan;
+    color: black;
+    font-weight: 550;
+    padding: 20px 40px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    border-radius: 22px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
 #game-intro {
     height: 100vh;
     width: 100vw;
     background-image: url(../images/background/game-intro-background.jpg);
     background-size: cover;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    /* background-position: center; */
 }
+
 
 /* #game-intro p {
     font-size: 18px;
     font-family: "Verdana";
 } */
 
-body button {
-    font-size: 30px;
-    background-color: lightcyan;
-    color: black;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
 #game-container {
     /* display: flex; */
     position: relative;
-    /* padding: 20px 0px; */
     justify-content: center;
 }
 
 #stats-container {
     position: absolute;
     z-index: 1;
-    background-color: blanchedalmond;
+    background-color: rgba(255, 235, 205, 0.8); /* Semitransparente para ver el fondo */
+    padding: 10px;
+    top: 20px;
+    left: 20px;
+    border-radius: 8px;
+    width: 120px;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* background-color: blanchedalmond;
     top: 32px;
     left: 32px;
-    width: 70px;
+    width: 70px; */
+}
+
+#stats-container p {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #game-screen {
