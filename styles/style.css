@@ -7,10 +7,18 @@ body {
     text-align: center;
 }
 
-.game-intro p {
+#game-intro {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../images/background/game-intro-background.jpg);
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* #game-intro p {
     font-size: 18px;
     font-family: "Verdana";
-}
+} */
 
 body button {
     font-size: 30px;
@@ -78,5 +86,14 @@ body button {
 }
 
 #game-end {
+    height: 100vh;
+    width: 100vw;
     display: none;
+    background-image: url(../images/background/game-end-background.jpg);
+    background-size: cover;
+    overflow: hidden;
+}
+
+#game-end h1 {
+    margin: 0;
 }
