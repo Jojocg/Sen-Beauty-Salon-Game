@@ -49,12 +49,14 @@ class Game {
         this.gameScreen.style.height = `${this.height}vh`;
         this.gameScreen.style.width = `${this.width}vw`;
 
-        // Hide the start screen
+        // Hide the start and end screen
         this.startScreen.style.display = "none";
-
+        this.gameEndScreen.style.display = "none";
         // Show the game screen
         this.gameScreen.style.display = "block";
 
+        this.lives = 2;  // Reset lives
+        this.gameIsOver = false; 
         // Start the round
         this.showCorrectFace();
     }
@@ -128,7 +130,7 @@ class Game {
                 this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();
 
                 this.currentPart = 'finishFace';
-                
+
             } else if (this.currentPart === 'finishFace') {
                 // Now all parts are selected, verify the face
                 this.checkIfCorrectFace();
@@ -140,17 +142,28 @@ class Game {
     checkIfCorrectFace() {
         if (this.costumer.verifyFace()) {
             alert("You won!");
-            // Reset game or move to the next level, etc.
+            
+            /* this.showCorrectFace(); */  // Show a new face to continue playing
         } else {
             alert("You lost! Try again.");
-            this.lives -= 1;
+            this.lives--;
+
+            const displayLives = document.getElementById("lives");
+            displayLives.innerText = `${this.lives}`;
+
             if (this.lives <= 0) {
                 alert("Game Over!");
-                // Restart the game or end it
+                this.endGame();
             } else {
                 alert(`You have ${this.lives} lives remaining.`);
-                // Allow the player to try again
+                this.showCorrectFace();// Allow the player to try again
             }
         }
+    }
+
+    endGame() {
+        this.gameIsOver = true;
+        this.gameScreen.style.display = "none";  // Hide the game screen
+        this.gameEndScreen.style.display = "block";  // Show the end game screen
     }
 }

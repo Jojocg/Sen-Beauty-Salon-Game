@@ -51,20 +51,6 @@ body button {
     /* animation: slide 5s linear infinite; */
 }
 
-/* @keyframes slide {
-    0% {
-        background-position: 0 -1000px;
-    }
-
-    95% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 0 50px;
-    }
-} */
-
 #face-elements-container {
     display: flex;
     flex-direction: column;
