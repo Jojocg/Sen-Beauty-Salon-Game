@@ -82,15 +82,15 @@ class Game {
                 // Randomly change each part of the face
                 if (this.currentPart === 'eyes') {
                     this.eyeElement.src = this.costumer.eyes[Math.floor(Math.random() * this.costumer.eyes.length)];
-                    this.noseElement.style.display = 'none';  
+                    this.noseElement.style.display = 'none';
                     this.mouthElement.style.display = 'none';
                 } else if (this.currentPart === 'nose') {
                     this.noseElement.src = this.costumer.noses[Math.floor(Math.random() * this.costumer.noses.length)];
-                } else if (this.currentPart === 'mouth') {
+                } else if (this.currentPart === 'finishFace') {
                     this.mouthElement.src = this.costumer.mouths[Math.floor(Math.random() * this.costumer.mouths.length)];
                 }
             }
-        }, 800)); 
+        }, 800));
 
         // Listen for spacebar to stop the rotation and choose the part
         document.addEventListener('keydown', this.stopSlotMachine.bind(this));
@@ -121,13 +121,15 @@ class Game {
 
                 // Show the mouth, leave eyes and nose visible
                 this.mouthElement.style.display = 'block'; // Show mouth
-                // Restart the randomization for the mouth
-                this.startSlotMachine(); // Keep randomizing the mouth
 
             } else if (this.currentPart === 'mouth') {
+                // Restart the randomization for the mouth
                 this.startSlotMachine();
                 this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();
+
+                this.currentPart = 'finishFace';
                 
+            } else if (this.currentPart === 'finishFace') {
                 // Now all parts are selected, verify the face
                 this.checkIfCorrectFace();
             }

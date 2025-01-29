@@ -53,14 +53,6 @@ class Costumer {
         this.selectedMouth = this.mouths[index];
     }
 
-    /* // Method to display the selected face on the screen
-    displayFace() {
-        console.log(`Costumer face:`);
-        console.log(`Eyes: ${this.selectedEyes}`);
-        console.log(`Nose: ${this.selectedNose}`);
-        console.log(`Mouth: ${this.selectedMouth}`);
-    } */
-
     // Method to verify if the selected face is correct
     verifyFace() {
         return (
