@@ -98,41 +98,40 @@ class Game {
         document.addEventListener('keydown', this.stopSlotMachine.bind(this));
     }
 
-    // Stop the slot machine and check if the player selected the correct face
     stopSlotMachine(event) {
-        if (event.key === ' ') {
-            // Stop the spinning and clear all intervals
+        if (event.key === ' ' && !this.isCheckingFace) {  // Added condition to prevent multiple checks
             this.isSpinning = false;
             this.intervals.forEach(interval => clearInterval(interval));
-
+    
             // Store the selected parts in the costumer object
             if (this.currentPart === 'eyes') {
-                this.costumer.selectedEyes = this.eyeElement.src.split('/').pop();;
+                this.costumer.selectedEyes = this.eyeElement.src.split('/').pop();
                 this.currentPart = 'nose'; // After eyes, show nose next
-
+    
                 // Show the nose, leave eyes visible
                 this.noseElement.style.display = 'block';  // Show nose
                 this.mouthElement.style.display = 'none';  // Hide mouth
-
+    
                 // Restart the randomization for the nose
                 this.startSlotMachine(); // Keep randomizing the nose
-
+    
             } else if (this.currentPart === 'nose') {
-                this.costumer.selectedNose = this.noseElement.src.split('/').pop();;
+                this.costumer.selectedNose = this.noseElement.src.split('/').pop();
                 this.currentPart = 'mouth'; // After nose, show mouth next
-
+    
                 // Show the mouth, leave eyes and nose visible
                 this.mouthElement.style.display = 'block'; // Show mouth
-
+    
             } else if (this.currentPart === 'mouth') {
                 // Restart the randomization for the mouth
                 this.startSlotMachine();
                 this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();
-
+    
                 this.currentPart = 'finishFace';
-
+    
             } else if (this.currentPart === 'finishFace') {
                 // Now all parts are selected, verify the face
+                this.isCheckingFace = true;  // Set flag to true to prevent further checks during this round
                 this.checkIfCorrectFace();
             }
         }
