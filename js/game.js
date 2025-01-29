@@ -23,8 +23,9 @@ class Game {
         this.currentPart = 'eyes'; // Tracking which part to show next
         this.isSpinning = false; // Tracking if the slot machine is spinning
 
-        this.gameEventListenerAdded = false; // Flag to check if event listener has been added
+        /* this.gameEventListenerAdded = false; */ // Flag to check if event listener has been added
         // Create dynamic img elements for eyes, nose, and mouth
+        this.isCheckingFace = false;
         this.createFaceElements();
     }
 
@@ -96,51 +97,14 @@ class Game {
         }, 800));
 
         // **Add this condition to prevent multiple event listeners being added**
-        if (!this.gameEventListenerAdded) {
+        /* if (!this.gameEventListenerAdded) {
             console.log("hii")
             document.addEventListener('keydown', this.stopSlotMachine.bind(this));
             this.gameEventListenerAdded = true; // Set flag to true once the listener is added
-        }
+        } */
     }
 
-    stopSlotMachine(event) {
-        if (event.key === ' ' && !this.isCheckingFace) {  // Added condition to prevent multiple checks
-            this.isSpinning = false;
-            this.intervals.forEach(interval => clearInterval(interval));
-
-            // Store the selected parts in the costumer object
-            if (this.currentPart === 'eyes') {
-                this.costumer.selectedEyes = this.eyeElement.src.split('/').pop();
-                this.currentPart = 'nose'; // After eyes, show nose next
-
-                // Show the nose, leave eyes visible
-                this.noseElement.style.display = 'block';  // Show nose
-                this.mouthElement.style.display = 'none';  // Hide mouth
-
-                // Restart the randomization for the nose
-                this.startSlotMachine(); // Keep randomizing the nose
-
-            } else if (this.currentPart === 'nose') {
-                this.costumer.selectedNose = this.noseElement.src.split('/').pop();
-                this.currentPart = 'mouth'; // After nose, show mouth next
-
-                // Show the mouth, leave eyes and nose visible
-                this.mouthElement.style.display = 'block'; // Show mouth
-
-            } else if (this.currentPart === 'mouth') {
-                // Restart the randomization for the mouth
-                this.startSlotMachine();
-                this.costumer.selectedMouth = this.mouthElement.src.split('/').pop();
-
-                this.currentPart = 'finishFace';
-
-            } else if (this.currentPart === 'finishFace') {
-                // Now all parts are selected, verify the face
-                this.isCheckingFace = true;  // Set flag to true to prevent further checks during this round
-                this.checkIfCorrectFace();
-            }
-        }
-    }
+    
 
     // Check if the selected face is correct
     checkIfCorrectFace() {
@@ -161,9 +125,9 @@ class Game {
             } else {
                 alert(`You have ${this.lives} lives remaining.`);
                 this.currentPart = 'eyes';
-
+                this.isCheckingFace = false;
                 // Reset event listener and set up a new round
-                this.gameEventListenerAdded = false;
+                /* this.gameEventListenerAdded = false; */
                 this.showCorrectFace();// Allow the player to try again
             }
         }
