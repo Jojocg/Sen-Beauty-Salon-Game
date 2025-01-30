@@ -8,22 +8,22 @@ window.onload = function () {
     });
 
     function startGame() {
-        console.log("start game");
+        /* console.log("start game"); */
         game = new Game();
 
         game.start();
+    }
+
+    function restartGame() {
+        location.reload();
     }
 
     restartButton.addEventListener("click", function () {
         restartGame();
     });
 
-    function restartGame() {
-        location.reload();
-    }
 
     const stopSlotMachine = (event) => {
-        /* console.log(event); */
         
         if (event.key === ' ' && !game.isCheckingFace) {  // Added condition (game.isCheckingFace) to prevent multiple checks
             game.isSpinning = false;
@@ -35,27 +35,25 @@ window.onload = function () {
                 game.currentPart = 'nose'; // After eyes, show nose next
 
                 // Show the nose, leave eyes visible
-                game.noseElement.style.display = 'block';  // Show nose
-                game.mouthElement.style.display = 'none';  // Hide mouth
+                game.noseElement.style.display = 'block';  
+                game.mouthElement.style.display = 'none';  
 
                 // Restart the randomization for the nose
-                game.startSlotMachine(); // Keep randomizing the nose
+                game.startSlotMachine(); 
 
             } else if (game.currentPart === 'nose') {
                 game.costumer.selectedNose = game.noseElement.src.split('/').pop();
-                game.currentPart = 'mouth'; // After nose, show mouth next
+                game.currentPart = 'mouth';
 
-                // Show the mouth, leave eyes and nose visible
-                game.mouthElement.style.display = 'block'; // Show mouth
+                game.mouthElement.style.display = 'block'; 
 
                 game.startSlotMachine();
 
             } else if (game.currentPart === 'mouth') {
-                // Restart the randomization for the mouth
-                game.startSlotMachine();
                 game.costumer.selectedMouth = game.mouthElement.src.split('/').pop();
-
                 game.currentPart = 'finishFace';
+                
+                game.startSlotMachine();
 
             } else if (game.currentPart === 'finishFace') {
                 // Now all parts are selected, verify the face

@@ -17,10 +17,9 @@ class Costumer {
         this.selectedMouth = null;
 
         this.element = document.createElement("img");
-
         this.element.src = imgSrc;
         this.element.style.position = "absolute";
-        // Set up the default element property values
+        
         this.element.style.width = `${width}px`;
         this.element.style.height = `${height}px`;
         this.element.style.left = `${left}px`;
@@ -40,18 +39,7 @@ class Costumer {
         this.correctNose = this.noses[randomNoseIndex];
         this.correctMouth = this.mouths[randomMouthIndex];
     }
-    // Methods to choose the parts of the face
-    chooseEyes(index) {
-        this.selectedEyes = this.eyes[index];
-    }
-
-    chooseNose(index) {
-        this.selectedNose = this.noses[index];
-    }
-
-    chooseMouth(index) {
-        this.selectedMouth = this.mouths[index];
-    }
+    
 
     // Method to verify if the selected face is correct
     verifyFace() {

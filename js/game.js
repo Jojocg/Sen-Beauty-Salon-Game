@@ -29,17 +29,14 @@ class Game {
     }
 
     createFaceElements() {
-        // Create and append the eye element
         this.eyeElement = document.createElement("img");
         this.eyeElement.id = "eyes";
         this.faceElements.appendChild(this.eyeElement);
 
-        // Create and append the nose element
         this.noseElement = document.createElement("img");
         this.noseElement.id = "nose";
         this.faceElements.appendChild(this.noseElement);
 
-        // Create and append the mouth element
         this.mouthElement = document.createElement("img");
         this.mouthElement.id = "mouth";
         this.faceElements.appendChild(this.mouthElement);
@@ -50,7 +47,7 @@ class Game {
         this.gameScreen.style.height = `${this.height}vh`;
         this.gameScreen.style.width = `${this.width}vw`;
 
-        // Hide the start and end screen
+        // Hide the intro and end screen
         this.startScreen.style.display = "none";
         this.gameEndScreen.style.display = "none";
         // Show the game screen
@@ -89,7 +86,7 @@ class Game {
                     this.mouthElement.style.display = 'none';
                 } else if (this.currentPart === 'nose') {
                     this.noseElement.src = this.costumer.noses[Math.floor(Math.random() * this.costumer.noses.length)];
-                } else if (this.currentPart === 'finishFace') {
+                } else if (this.currentPart === 'mouth') {
                     this.mouthElement.src = this.costumer.mouths[Math.floor(Math.random() * this.costumer.mouths.length)];
                 }
             }
@@ -108,7 +105,7 @@ class Game {
 
             const restartButton = document.querySelector(".restart-button");
             this.gameScreen.appendChild(restartButton);
-            /* this.showCorrectFace(); */  // Show a new face to continue playing
+        
         } else {
             alert("You lost! Try again.");
             this.lives--;
@@ -130,7 +127,7 @@ class Game {
 
     endGame() {
         this.gameIsOver = true;
-        this.gameScreen.style.display = "none";  // Hide the game screen
-        this.gameEndScreen.style.display = "block";  // Show the end game screen
+        this.gameScreen.style.display = "none";  
+        this.gameEndScreen.style.display = "block"; 
     }
 }
