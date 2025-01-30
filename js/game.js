@@ -23,10 +23,9 @@ class Game {
         this.currentPart = 'eyes'; // Tracking which part to show next
         this.isSpinning = false; // Tracking if the slot machine is spinning
 
-        /* this.gameEventListenerAdded = false; */ // Flag to check if event listener has been added
         // Create dynamic img elements for eyes, nose, and mouth
-        this.isCheckingFace = false;
         this.createFaceElements();
+        this.isCheckingFace = false;
     }
 
     createFaceElements() {
@@ -95,16 +94,8 @@ class Game {
                 }
             }
         }, 800));
-
-        // **Add this condition to prevent multiple event listeners being added**
-        /* if (!this.gameEventListenerAdded) {
-            console.log("hii")
-            document.addEventListener('keydown', this.stopSlotMachine.bind(this));
-            this.gameEventListenerAdded = true; // Set flag to true once the listener is added
-        } */
     }
 
-    
 
     // Check if the selected face is correct
     checkIfCorrectFace() {
@@ -126,8 +117,6 @@ class Game {
                 alert(`You have ${this.lives} lives remaining.`);
                 this.currentPart = 'eyes';
                 this.isCheckingFace = false;
-                // Reset event listener and set up a new round
-                /* this.gameEventListenerAdded = false; */
                 this.showCorrectFace();// Allow the player to try again
             }
         }

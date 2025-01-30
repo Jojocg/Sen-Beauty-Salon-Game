@@ -25,7 +25,7 @@ window.onload = function () {
     const stopSlotMachine = (event) => {
         /* console.log(event); */
         
-        if (event.key === ' ' && !game.isCheckingFace) {  // Added condition to prevent multiple checks
+        if (event.key === ' ' && !game.isCheckingFace) {  // Added condition (game.isCheckingFace) to prevent multiple checks
             game.isSpinning = false;
             game.intervals.forEach(interval => clearInterval(interval));
 
