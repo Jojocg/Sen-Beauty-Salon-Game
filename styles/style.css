@@ -72,13 +72,14 @@ h1 {
 #stats-container {
     position: absolute;
     z-index: 1;
+    font-family: "Poppins", sans-serif;
+    font-size: 8px;
     background-color: rgba(255, 235, 205, 0.8);
-    padding: 10px;
+    padding: 8px;
     top: 20px;
     left: 20px;
     border-radius: 8px;
     width: 120px;
-    font-size: 18px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     /* background-color: blanchedalmond;
     top: 32px;
@@ -138,6 +139,14 @@ h1 {
 #mouth {
     width: 55px;
     height: 35px;
+}
+
+.won-game-gif {
+    width: 800px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 5;
 }
 
 #game-end {

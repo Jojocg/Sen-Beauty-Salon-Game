@@ -101,7 +101,10 @@ class Game {
     checkIfCorrectFace() {
         if (this.costumer.verifyFace()) {
             alert("You won!");
-
+            const wonGif = document.createElement("img");
+            wonGif.classList.add("won-game-gif");
+            wonGif.src = "./images/gifs/chihiro-won.gif";
+            this.gameScreen.appendChild(wonGif);
             /* this.showCorrectFace(); */  // Show a new face to continue playing
         } else {
             alert("You lost! Try again.");
