@@ -52,11 +52,16 @@ h1 {
     /* background-position: center; */
 }
 
+#game-intro p {
+    font-family: "Poppins", sans-serif;
+    font-size: 22px;
+    color: whitesmoke;
+    font-weight: 500;
+}
 
-/* #game-intro p {
-    font-size: 18px;
-    font-family: "Verdana";
-} */
+.spacebar-img {
+    width: 180px;
+}
 
 #game-container {
     /* display: flex; */
