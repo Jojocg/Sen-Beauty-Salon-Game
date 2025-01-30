@@ -105,6 +105,9 @@ class Game {
             wonGif.classList.add("won-game-gif");
             wonGif.src = "./images/gifs/chihiro-won.gif";
             this.gameScreen.appendChild(wonGif);
+
+            const restartButton = document.querySelector(".restart-button");
+            this.gameScreen.appendChild(restartButton);
             /* this.showCorrectFace(); */  // Show a new face to continue playing
         } else {
             alert("You lost! Try again.");
