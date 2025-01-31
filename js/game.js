@@ -97,7 +97,7 @@ class Game {
     // Check if the selected face is correct
     checkIfCorrectFace() {
         if (this.costumer.verifyFace()) {
-            alert("You won!");
+            alert("You won! You can eat something today!");
             const wonGif = document.createElement("img");
             wonGif.classList.add("won-game-gif");
             wonGif.src = "./images/gifs/chihiro-won.gif";
